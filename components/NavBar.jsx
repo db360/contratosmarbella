@@ -1,11 +1,9 @@
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import DropDown from "./dropDown";
 
 const NavBar = () => {
   const [dropHidden, setDropHidden] = useState(false);
-console.log(dropHidden)
+// console.log(dropHidden)
   function toggleDropHidden() {
     setDropHidden(!dropHidden);
   }
@@ -25,7 +23,28 @@ console.log(dropHidden)
         </a>
         <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12 items-center">
           <Link href="/"><a className="hover:opacity-60" >Home</a></Link>
-          <Link href="/"><a className="" ><DropDown /></a></Link>
+          <div className="group inline-block">
+      <button className="outline-none focus:outline-none px-3 py-1 rounded-sm flex items-center min-w-32">
+        <span className="pr-1 font-semibold flex-1">Contratos</span>
+        <span >
+          <svg
+            className="fill-current h-4 w-4 transform group-hover:-rotate-180
+        transition duration-150 ease-in-out"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+          </svg>
+        </span>
+      </button>
+      <ul
+        className="pt-2 rounded-sm transform scale-0 group-hover:scale-100 absolute
+  transition duration-150 ease-in-out origin-top min-w-40 bg-gray-900"
+      >
+       <Link href="/licitaciones"><li className="cursor-pointer rounded-sm px-3 py-1 bg-gray-900 hover:opacity-60">Licitationes</li></Link>
+       <Link href="/contratos-menores"><li className="cursor-pointer rounded-sm px-3 py-1 bg-gray-900 hover:opacity-60">Contratos Menores</li></Link>
+      </ul>
+    </div>
           <Link href="/graficas" ><a className="hover:opacity-60">Gráficas</a></Link>
           <Link href="/foro"><a className="hover:opacity-60" >Foro</a></Link>
         </ul>
@@ -38,22 +57,6 @@ console.log(dropHidden)
       </a>
     </nav>
     </section>
-    // <nav className="bg-white border-gray-200 px-2 sm:px-4 py-5 rounded dark:bg-gray-900">
-    //   <div className="container flex flex-wrap justify-between items-center mx-auto">
-    //     <div className="flex items-center">
-    //       <Image
-    //         width={30}
-    //         height={30}
-    //         src="https://flowbite.com/docs/images/logo.svg"
-    //         className="h-6 sm:h-9"
-    //         alt="Flowbite Logo"
-    //       />
-    //       <span className="ml-4 self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-    //         <Link href="/">Contratos Marbella</Link>
-    //       </span>
-    //     </div>
-    //   </div>
-    // </nav>
   );
 };
 
