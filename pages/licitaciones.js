@@ -1,22 +1,22 @@
 import Table from "../components/Table";
-import contratos from "../db/licitaciones.json";
+import { DataContext } from "../context/dataContext";
+
 
 
 //Icons
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 
 //mongodb Connection
 // import dbConnect from "../lib/dbConnect";
 
 export default function Home() {
-  const [licitaciones, setLicitaciones] = useState(JSON.stringify(contratos));
 
+  const { formattedData, headers } = useContext(DataContext);
 
-  console.log(JSON.stringify(contratos.importe) )
   return (
     <main className="w-screen">
       <div className="container mx-auto overflow-x-auto">
-        <Table contratos={licitaciones}></Table>
+        <Table contratos={formattedData}></Table>
       </div>
     </main>
   );

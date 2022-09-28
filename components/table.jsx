@@ -11,19 +11,20 @@ export default function Table({ contratos }) {
   const [loading, setLoading] = useState(false);
   const [filterText, setFilterText] = useState("");
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+
   const filteredItems = licitaciones.filter(
     (item) =>
-      item.objetivo && item.objetivo.toLowerCase().includes(filterText.toLowerCase())  ||
+      item.objcontrato && item.objcontrato.toLowerCase().includes(filterText.toLowerCase())  ||
       item.tipo && item.tipo.toLowerCase().includes(filterText.toLowerCase())  ||
       item.estado && item.estado.toLowerCase().includes(filterText.toLowerCase())  ||
-      item.noExpediente && item.noExpediente.toLowerCase().includes(filterText.toLowerCase())  ||
+      item.name && item.name.toLowerCase().includes(filterText.toLowerCase())  ||
       item.fecha && item.fecha.toLowerCase().includes(filterText.toLowerCase())  ||
-      item.importe && item.importe.toLowerCase().includes(filterText.toLowerCase())
+      item.importe && item.importe.toString().includes(filterText.toLowerCase())
   );
- console.log(licitaciones);
+
   useEffect(() => {
     setLoading(true);
-    setLicitaciones(JSON.parse(contratos));
+    setLicitaciones(contratos);
     setLoading(false);
   }, [loading, contratos]);
 
@@ -83,7 +84,7 @@ export default function Table({ contratos }) {
     {
       id: "id",
       name: "ID",
-      selector: (row) => row.noExpediente,
+      selector: (row) => row.name,
       sortable: true,
       maxWidth: "8%",
     },
@@ -97,7 +98,7 @@ export default function Table({ contratos }) {
     {
       id: "name",
       name: "Objectivo del Contrato",
-      selector: (row) => row.objetivo,
+      selector: (row) => row.objcontrato,
       sortable: true,
       maxWidth: "50%",
       wrap: true,

@@ -1,22 +1,22 @@
-import Table from "../components/Table";
-import contratos from "../db/licitaciones.json";
-
-//Icons
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import Chart from "../components/Chart";
+import ContratosByTipo from "../components/ContratosByEstado";
+import { DataContext } from "../context/dataContext";
 
 //mongodb Connection
 // import dbConnect from "../lib/dbConnect";
 
 export default function Graphs() {
 
-  // console.log(JSON.stringify(contratos) )
+  const { formattedData, headers } = useContext(DataContext);
+  // console.log(formattedData)
   return (
-    <main className="mt-12 px-16">
-      <h1 className="text-center mb-5">En qué se gastan tu dinero?</h1>
+    <main className="mt-6 px-16">
+      {/* <h1 className="text-center">En qué se gastan tu dinero?</h1> */}
       <div className="flex justify-around">
         <div>
-          <Chart />
+          <ContratosByTipo contratos={formattedData}/>
+          <Chart contratos={formattedData}/>
         </div>
       </div>
     </main>
