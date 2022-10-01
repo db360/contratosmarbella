@@ -1,18 +1,14 @@
 //Icons
 
+import Hero from "../components/Hero";
+
 //mongodb Connection
 // import dbConnect from "../lib/dbConnect";
 
 export default function Home() {
-
-
   // console.log(JSON.stringify(contratos) )
   return (
-    <main className="w-screen">
-      <div className="container mx-auto overflow-x-auto">
-
-      </div>
-    </main>
+        <Hero />
   );
 }
 

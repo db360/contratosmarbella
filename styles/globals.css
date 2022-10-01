@@ -6,7 +6,8 @@
 @tailwind utilities;
 
 @layer base {
-  html {
+
+  * > * {
     font-family: 'Raleway', "Sans-serif" !important;
   }
 }
@@ -30,15 +31,32 @@ a {
   }
 
 }
-
+.rdt_Table {
+  overflow: hidden;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.rdt_Table::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
 
 .rdt_TableCol {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: bold;
+
 }
 
 .rdt_TableRow {
   height: 100px;
+
+
+}
+
+.rdt_TableCell {
+}
+
+.rdt_TableCell::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
 }
 
 .group:hover .group-hover\:scale-100 { transform: scale(1) }

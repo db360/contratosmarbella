@@ -1,6 +1,7 @@
 import moment from "moment";
 import { createContext } from "react";
 import data from "../db/licitacionesFECHASJUNTAS.json";
+import dataMenores from '../db/contratosMenores.json'
 
 export const DataContext = createContext();
 
@@ -16,7 +17,7 @@ export const DataProvider = ({ children }) => {
     { key: "fecha", label: "Fecha" },
   ];
 
-  const formattedData = data.map((data) => {
+  const formattedLicitaciones = data.map((data) => {
     // const fechaFormat = moment(data.fecha, "DD/MM/YYYY", true).format(
     //   "DD/MM/YYYY"
     // );
@@ -31,10 +32,25 @@ export const DataProvider = ({ children }) => {
     };
   });
 
-  // console.log(formattedData)
+  const formattedCMenores = dataMenores.map((data) => {
+    // const fechaFormat = moment(data.fecha, "DD/MM/YYYY", true).format(
+    //   "DD/MM/YYYY"
+    // );
+
+    return {
+      importe: data.importe,
+      fecha: data.fecha,
+      name: data.expediente,
+      objcontrato: data.objetoContrato,
+      adjudicatario: data.adjudicatario,
+      tipo: data.tipo,
+    };
+  });
+
+  // console.log(formattedCMenores)
 
   return (
-    <DataContext.Provider value={{ formattedData, headers }}>
+    <DataContext.Provider value={{ formattedData: formattedLicitaciones, formattedCMenores, headers }}>
       {children}
     </DataContext.Provider>
   );

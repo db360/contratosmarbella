@@ -47,7 +47,8 @@ const Chart = ({contratos}) => {
     obj2.push(holder[prop]);
     obj3.push({ tipo: prop, importe: parseInt(holder[prop]) });
   }
-
+console.log(obj2)
+console.log(obj3)
   // console.log(obj2);
   // console.log(contratos)
   const totalPresupuesto = obj3.reduce((total, obj) => obj.importe + total, 0);

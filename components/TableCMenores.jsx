@@ -6,7 +6,7 @@ import FilterComponent from "./FilterComponent";
 //   return num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,") + "€";
 // }
 
-export default function Table({ contratos }) {
+export default function TableCMenores({ contratos }) {
   const [licitaciones, setLicitaciones] = useState([]);
   const [loading, setLoading] = useState(false);
   const [filterText, setFilterText] = useState("");
@@ -16,7 +16,7 @@ export default function Table({ contratos }) {
     (item) =>
       item.objcontrato && item.objcontrato.toLowerCase().includes(filterText.toLowerCase())  ||
       item.tipo && item.tipo.toLowerCase().includes(filterText.toLowerCase())  ||
-      item.estado && item.estado.toLowerCase().includes(filterText.toLowerCase())  ||
+      item.adjudicatario && item.adjudicatario.toLowerCase().includes(filterText.toLowerCase())  ||
       item.name && item.name.toLowerCase().includes(filterText.toLowerCase())  ||
       item.fecha && item.fecha.toLowerCase().includes(filterText.toLowerCase())  ||
       item.importe && item.importe.toString().includes(filterText.toLowerCase())
@@ -82,66 +82,58 @@ export default function Table({ contratos }) {
 
   const columns = [
     {
-      id: "id",
+      id: "expediente",
       name: "ID",
       selector: (row) => row.name,
       sortable: true,
       maxWidth: "8%",
-      style: {
-        fontWeight: 'bold'
-      },
     },
     {
       id: "tipo",
       name: "Tipo",
       selector: (row) => row.tipo,
       sortable: true,
-      maxWidth: "9%",
+      maxWidth: "7%",
     },
     {
       id: "name",
       name: "Objectivo del Contrato",
       selector: (row) => row.objcontrato,
       sortable: true,
-      maxWidth: "50%",
+      maxWidth: "40%",
       wrap: true,
+      compact: true,
       style: {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+      }
 
-      },
     },
     {
-      id: "estado",
-      name: "Estado",
-      selector: (row) => row.estado,
+      id: "adjudicatario",
+      name: "Adjudicatario",
+      selector: (row) => (row.adjudicatario),
+      format: (row) => row.adjudicatario = (row.adjudicatario).replace(/;/g,  ' '),
       sortable: true,
-      maxWidth: "7%",
+      maxWidth: "18%",
+      wrap: true,
+      compact: true
+
     },
     {
       id: "importe",
       name: "Importe",
       selector: (row) =>
-        (row.importe),
+        (row.importe) + " €",
       format: (row) => row.importe = ((row.importe).toLocaleString()),
       sortable: true,
-      maxWidth: "8%",
-      right: true,
-      style: {
-        fontSize: '0.9rem',
-        fontWeight: 'bold'
-      },
+      maxWidth: "7%",
+      right: true
     },
     {
       id: "fecha",
       name: "Fecha",
-      selector: (row) => {
-        const formatFecha = row.fecha.replace('.', ' ').replace(/ /g,':').replace('::', ':').replace(':', ' ')
-        console.log(Object(formatFecha))
-        return Object(formatFecha)
-        // const arrayFecha = formatFecha.split(/ |,/)
-        // console.log(arrayFecha)
-        // return arrayFecha
-      },
-
+      selector: (row) => row.fecha,
       sortable: true,
       maxWidth: "20%",
       wrap: true,
@@ -151,11 +143,15 @@ export default function Table({ contratos }) {
   return (
     <div className="p-2 mx-auto sm:p-4 dark:text-gray-100">
       <h2 className="mb-4 text-2xl font-semibold leading-tight">
-        Licitaciones:
+        Contratos Menores:
       </h2>
+      {/* <div className="inline-block w-full mb-4">
+        <FilterComponent filterText={filterText}
+onFilter={onFilter}/>
+      </div> */}
       <DataTable
       keyField="id"
-        tittle="Licitaciones Ayuntamiento Marbella"
+        tittle="Contratos Menores Ayuntamiento Marbella"
         columns={columns}
         data={filteredItems}
         progressPending={loading}
@@ -166,9 +162,7 @@ export default function Table({ contratos }) {
         pagination
         highlightOnHover
         fixedHeader
-        responsive
         striped
-
       />
     </div>
   );

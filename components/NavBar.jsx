@@ -14,13 +14,13 @@ const NavBar = () => {
     }
   }
   return (
-    <section className="relative mx-auto">
+    <section className="relative mx-auto z-50">
     <nav className="flex justify-between bg-gray-900 text-white w-screen">
       <div className="px-5 xl:px-12 py-6 flex w-full items-center">
-        <a className="text-3xl font-bold font-heading" href="#">
+        <Link href="/"><a className="text-3xl font-bold font-heading">
           Marbella
          {/* <Image height={30} width={30} class="h-9" src="logo.png" alt="logo" /> */}
-        </a>
+        </a></Link>
         <ul className="hidden md:flex px-4 mx-auto font-semibold font-heading space-x-12 items-center">
           <Link href="/"><a className="hover:opacity-60" >Home</a></Link>
           <div className="group inline-block">
