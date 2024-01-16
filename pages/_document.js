@@ -16,7 +16,6 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap"
             rel="stylesheet"
           />
-          <GoogleAnalytics />
         </Head>
         <body>
           <Main />
