@@ -1,5 +1,5 @@
 import Script from "next/script"
-import * as gtag from "./gtag.js"
+import * as gtag from "ga-gtag";
 
 const GoogleAnalytics = () => {
     return (
