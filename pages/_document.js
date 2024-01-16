@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import GoogleAnalytics from "../components/GoogleAnalytics";
 
 class MyDocument extends Document {
   render() {
@@ -17,6 +18,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
+          <GoogleAnalytics />
           <Main />
           <NextScript />
         </body>
